@@ -64,14 +64,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ? _colorList[1]
                 : _currentPage == 2 ? _colorList[2] : null,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 40.0),
+          padding: EdgeInsets.symmetric(vertical: 20.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+//            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
                 alignment: Alignment.centerRight,
                 child: FlatButton(
-                  onPressed: () => print('Skip'),
+                  onPressed: () {},
                   child: Text(
                     _currentPage == 2 ? '' : 'Skip',
                     style: TextStyle(
@@ -82,7 +82,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
               ),
               Container(
-                height: 600.0,
+                height: 600,
                 child: PageView(
                   controller: _pageController,
                   onPageChanged: (int page) {
