@@ -64,7 +64,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ? _colorList[1]
                 : _currentPage == 2 ? _colorList[2] : null,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.0),
+          padding: EdgeInsets.symmetric(vertical: 30.0),
           child: Column(
 //            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -82,7 +82,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
               ),
               Container(
-                height: 600,
+                height: MediaQuery.of(context).size.height - 200,
                 child: PageView(
                   controller: _pageController,
                   onPageChanged: (int page) {

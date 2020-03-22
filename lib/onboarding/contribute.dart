@@ -4,15 +4,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 Widget contributeWidget() {
   return Padding(
-    padding: EdgeInsets.all(40.0),
+    padding: EdgeInsets.all(20.0),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SvgPicture.asset(
           'images/book.svg',
-          height: 300,
-          width: 300,
+          height: 250,
+          width: 250,
         ),
         SizedBox(height: 30.0),
         Text(

@@ -11,8 +11,8 @@ Widget takeWidget() {
       children: <Widget>[
         SvgPicture.asset(
           'images/question.svg',
-          height: 300,
-          width: 300,
+          height: 250,
+          width: 250,
         ),
         SizedBox(height: 30.0),
         Text(
