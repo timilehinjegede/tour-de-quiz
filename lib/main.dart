@@ -65,24 +65,26 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 : _currentPage == 2 ? _colorList[2] : null,
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 30.0),
-          child: Column(
-//            crossAxisAlignment: CrossAxisAlignment.stretch,
+          child: Stack(
             children: <Widget>[
-              Container(
-                alignment: Alignment.centerRight,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text(
-                    _currentPage == 2 ? '' : 'Skip',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18.0,
+              Positioned(
+                left: MediaQuery.of(context).size.width - 85,
+                child: Container(
+                  alignment: Alignment.centerRight,
+                  child: FlatButton(
+                    onPressed: () {},
+                    child: Text(
+                      _currentPage == 2 ? '' : 'Skip',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18.0,
+                      ),
                     ),
                   ),
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height - 200,
+                height: MediaQuery.of(context).size.height,
                 child: PageView(
                   controller: _pageController,
                   onPageChanged: (int page) {
@@ -97,59 +99,59 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: _buildPageIndicator(),
+              Positioned(
+                top: MediaQuery.of(context).size.height/2 + 90,
+                left: MediaQuery.of(context).size.width/2 - 40,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _buildPageIndicator(),
+                ),
               ),
               _currentPage != _numPages - 1
-                  ? Expanded(
-                      child: Align(
-                          alignment: FractionalOffset.bottomCenter,
-                          child: GestureDetector(
-                            onTap: () {
-                              _pageController.nextPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.ease,
-                              );
-                            },
-                            child: Material(
-                              elevation: 0.5,
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                              child: Container(
-                                height: 50,
-                                width: MediaQuery.of(context).size.width - 100,
-                                child: Center(
-                                  child: Text(
-                                    'NEXT',
-                                    style: bTextStyle,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )),
-                    )
-                  : _currentPage == _numPages - 1
-                      ? Expanded(
-                          child: Align(
-                            alignment: FractionalOffset.bottomCenter,
-                            child: Material(
-                              elevation: 0.5,
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                              child: Container(
-                                height: 50.0,
-                                width: MediaQuery.of(context).size.width - 100,
-                                child: Center(
-                                  child: Text(
-                                    'START',
-                                    style: bTextStyle,
-                                  ),
-                                ),
+                  ? Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: GestureDetector(
+                        onTap: () {
+                          _pageController.nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.ease,
+                          );
+                        },
+                        child: Material(
+                          elevation: 0.5,
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width - 100,
+                            child: Center(
+                              child: Text(
+                                'NEXT',
+                                style: bTextStyle,
                               ),
                             ),
                           ),
-                        )
+                        ),
+                      ))
+                  : _currentPage == _numPages - 1
+                      ? Align(
+                        alignment: FractionalOffset.bottomCenter,
+                        child: Material(
+                          elevation: 0.5,
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            height: 50.0,
+                            width: MediaQuery.of(context).size.width - 100,
+                            child: Center(
+                              child: Text(
+                                'START',
+                                style: bTextStyle,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
                       : Text(''),
             ],
           ),

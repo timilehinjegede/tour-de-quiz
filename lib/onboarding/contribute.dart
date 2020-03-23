@@ -14,7 +14,7 @@ Widget contributeWidget() {
           height: 250,
           width: 250,
         ),
-        SizedBox(height: 30.0),
+        SizedBox(height: 150.0),
         Text(
           'Contribute Questions',
           style: kTitleStyle,
