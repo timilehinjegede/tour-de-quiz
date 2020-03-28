@@ -17,10 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
         children: <Widget>[
           Positioned(
             top: 80,
-            left: 35,
+            left: 24,
             child: Container(
               height: 300,
-              width: MediaQuery.of(context).size.width - 70,
+              width: MediaQuery.of(context).size.width - 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.blue,
@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white
                         ),
                       ),
+                      SizedBox(width: 10,),
                       Icon(Icons.wb_incandescent, color: Colors.orangeAccent, size: 45,)
                     ],
                   ),
@@ -84,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.fromLTRB(20,20,20,25),
               width: MediaQuery.of(context).size.width,
               height: 300,
               decoration: BoxDecoration(
@@ -118,12 +119,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                       color: Colors.red,
                                     child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
                                         Image(
-                                          image: AssetImage(''),
+                                          image: AssetImage('images/lion.png'),
                                           fit: BoxFit.cover,
-                                          height: 45,
-                                          width: 40,
+                                          height: 50,
+                                          width: 70,
                                         ),
                                         Text(
                                             'Animals &\nWild-life'
@@ -171,9 +173,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                     color: Colors.red,
                                     child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
                                         Image(
-                                          image: AssetImage(''),
+                                          image: AssetImage('images/bulb.png'),
                                           fit: BoxFit.cover,
                                           height: 45,
                                           width: 40,
@@ -223,9 +226,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                     color: Colors.red,
                                     child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
                                         Image(
-                                          image: AssetImage(''),
+                                          image: AssetImage('images/footbball.png'),
                                           fit: BoxFit.cover,
                                           height: 45,
                                           width: 40,
@@ -269,8 +273,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     alignment: Alignment.bottomCenter,
                     child: GestureDetector(
                       child: Container(
-                        height: 40,
-                        width: 240,
+                        height: 50,
+                        width: MediaQuery.of(context).size.width - 80,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.black12
