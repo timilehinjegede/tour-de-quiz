@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tourdequiz/screens/home.dart';
+import 'package:tourdequiz/screens/takequiz.dart';
 import 'utils/styles.dart';
 import 'package:tourdequiz/onboarding/compete.dart';
 import 'package:tourdequiz/onboarding/contribute.dart';
@@ -11,6 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/home': (context) => HomeScreen(),
+        '/takequiz': (context) => TakeQuizDemo(),
+      },
       debugShowCheckedModeBanner: false,
       home: OnBoardingScreen(),
     );
@@ -136,17 +142,22 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   : _currentPage == _numPages - 1
                       ? Align(
                         alignment: FractionalOffset.bottomCenter,
-                        child: Material(
-                          elevation: 0.5,
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          child: Container(
-                            height: 50.0,
-                            width: MediaQuery.of(context).size.width - 100,
-                            child: Center(
-                              child: Text(
-                                'START',
-                                style: bTextStyle,
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.pushNamed(context, '/home');
+                          },
+                          child: Material(
+                            elevation: 0.5,
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            child: Container(
+                              height: 50.0,
+                              width: MediaQuery.of(context).size.width - 100,
+                              child: Center(
+                                child: Text(
+                                  'START',
+                                  style: bTextStyle,
+                                ),
                               ),
                             ),
                           ),
