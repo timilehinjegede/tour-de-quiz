@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:tourdequiz/components/check.dart';
 
 class HomeScreen extends StatefulWidget {
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-  bool isSelected = false ;
+  var selectedCard = '';
 
   @override
   Widget build(BuildContext context) {
@@ -19,34 +18,34 @@ class _HomeScreenState extends State<HomeScreen> {
             top: 80,
             left: 24,
             child: Container(
-              height: 300,
+              height: 280,
               width: MediaQuery.of(context).size.width - 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.blue,
+                color: Color.fromRGBO(32, 175, 199, 1),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Text(
                     'LAST WEEK TOP SCORE',
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white
-                    ),
+                    style: TextStyle(fontSize: 14, color: Colors.white),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         '4000',
-                        style: TextStyle(
-                          fontSize: 40,
-                          color: Colors.white
-                        ),
+                        style: TextStyle(fontSize: 40, color: Colors.white),
                       ),
-                      SizedBox(width: 10,),
-                      Icon(Icons.wb_incandescent, color: Colors.orangeAccent, size: 45,)
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Icon(
+                        Icons.wb_incandescent,
+                        color: Colors.orangeAccent,
+                        size: 45,
+                      )
                     ],
                   ),
                   Row(
@@ -54,12 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: <Widget>[
                       Text(
                         'By',
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.white
-                        ),
+                        style: TextStyle(fontSize: 12, color: Colors.white),
                       ),
-                      SizedBox(width: 10,),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Container(
                         height: 20,
                         width: 20,
@@ -68,13 +66,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Text(
                         'Chiebuka Edwin',
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.white
-                        ),
+                        style: TextStyle(fontSize: 12, color: Colors.white),
                       )
                     ],
                   )
@@ -85,20 +82,24 @@ class _HomeScreenState extends State<HomeScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: EdgeInsets.fromLTRB(20,20,20,25),
+              padding: EdgeInsets.fromLTRB(20, 20, 20, 25),
               width: MediaQuery.of(context).size.width,
               height: 300,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20),
-                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(25),
+                  topLeft: Radius.circular(25),
                 ),
-                color: Colors.grey,
+                color: Colors.grey[200],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Top Quiz Catgories'),
+                  Text('Top Quiz Catgories',
+                  style: TextStyle(
+                    fontSize: 16
+                  ),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -117,9 +118,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Material(
                                     elevation: 2.0,
                                     borderRadius: BorderRadius.circular(10),
-                                      color: Colors.red,
+                                    color: Color.fromRGBO(231, 249, 255, 1),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
                                         Image(
                                           image: AssetImage('images/lion.png'),
@@ -127,37 +129,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                           height: 50,
                                           width: 70,
                                         ),
-                                        Text(
-                                            'Animals &\nWild-life'
-                                        )
+                                        Text('Animals &\nWild-life')
                                       ],
                                     ),
                                   ),
                                 ),
                               ),
-                              isSelected ? Positioned(
-                                left: 88,
-                                top: 4,
-                                child: Container(
-                                  height: 20,
-                                  width: 20,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.green
-                                  ),
-                                  child: Icon(Icons.check, color: Colors.white,size: 17,),
-                                ),
-                              ) : Container(),
+                              selectedCard == 'Animals &\nWild-life'
+                                  ? MarkIndicator()
+                                  : Container(),
                             ],
                           ),
                         ),
-                        onTap: (){
+                        onTap: () {
                           setState(() {
-                            isSelected = true ;
+                            selectedCard = 'Animals &\nWild-life';
                           });
                         },
                       ),
-
                       GestureDetector(
                         child: Container(
                           height: 120,
@@ -171,9 +160,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Material(
                                     elevation: 2.0,
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Colors.red,
+                                    color: Color.fromRGBO(231, 249, 255, 1),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
                                         Image(
                                           image: AssetImage('images/bulb.png'),
@@ -181,33 +171,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                           height: 45,
                                           width: 40,
                                         ),
-                                        Text(
-                                            'Animals &\nWild-life'
-                                        )
+                                        Text('Elementary\nQuestions')
                                       ],
                                     ),
                                   ),
                                 ),
                               ),
-                              isSelected ? Positioned(
-                                left: 88,
-                                top: 4,
-                                child: Container(
-                                  height: 20,
-                                  width: 20,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.green
-                                  ),
-                                  child: Icon(Icons.check, color: Colors.white,size: 17,),
-                                ),
-                              ) : Container(),
+                              selectedCard == 'Elementary\nQuestions'
+                                  ? MarkIndicator()
+                                  : Container(),
                             ],
                           ),
                         ),
-                        onTap: (){
+                        onTap: () {
                           setState(() {
-                            isSelected = true ;
+                            selectedCard = 'Elementary\nQuestions';
                           });
                         },
                       ),
@@ -224,43 +202,33 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Material(
                                     elevation: 2.0,
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Colors.red,
+                                    color: Color.fromRGBO(231, 249, 255, 1),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
                                         Image(
-                                          image: AssetImage('images/footbball.png'),
+                                          image: AssetImage(
+                                              'images/footbball.png'),
                                           fit: BoxFit.cover,
                                           height: 45,
                                           width: 40,
                                         ),
-                                        Text(
-                                            'Animals &\nWild-life'
-                                        )
+                                        Text('Football &\nSports')
                                       ],
                                     ),
                                   ),
                                 ),
                               ),
-                              isSelected ? Positioned(
-                                left: 88,
-                                top: 4,
-                                child: Container(
-                                  height: 20,
-                                  width: 20,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.green
-                                  ),
-                                  child: Icon(Icons.check, color: Colors.white,size: 17,),
-                                ),
-                              ) : Container(),
+                              selectedCard == 'Football &\nSports'
+                                  ? MarkIndicator()
+                                  : Container(),
                             ],
                           ),
                         ),
-                        onTap: (){
+                        onTap: () {
                           setState(() {
-                            isSelected = true ;
+                            selectedCard = 'Football &\nSports';
                           });
                         },
                       ),
@@ -277,7 +245,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: MediaQuery.of(context).size.width - 80,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.black12
+                          color: selectedCard != ''
+                              ? Color.fromRGBO(32, 175, 199, 1)
+                              : Color.fromRGBO(72, 72, 72, 180),
                         ),
                         child: Center(
                           child: Text(
@@ -288,8 +258,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      onTap: (){
-                        Navigator.pushNamed(context, '/takequiz');
+                      onTap: () {
+                        selectedCard != ''
+                            ? Navigator.pushNamed(context, '/takequiz')
+                            : null;
                       },
                     ),
                   ),

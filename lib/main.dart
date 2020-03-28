@@ -78,7 +78,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 child: Container(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                     child: Text(
                       _currentPage == 2 ? '' : 'Skip',
                       style: TextStyle(
