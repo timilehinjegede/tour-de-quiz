@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourdequiz/main.dart';
 
 class TakeQuizDemo extends StatefulWidget {
   @override
@@ -6,6 +7,9 @@ class TakeQuizDemo extends StatefulWidget {
 }
 
 class _TakeQuizDemoState extends State<TakeQuizDemo> {
+
+  final text = '';
+  var questionNumber = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class _TakeQuizDemoState extends State<TakeQuizDemo> {
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height - 500,
-              color: Colors.red,
+              color: Color.fromRGBO(32, 175, 199, 1),
             ),
             Positioned(
               child: Container(
@@ -25,9 +29,10 @@ class _TakeQuizDemoState extends State<TakeQuizDemo> {
                 width: MediaQuery.of(context).size.width - 50,
                 child: Material(
                   borderRadius: BorderRadius.circular(10),
-                  elevation: 5,
-                  color: Colors.green,
+                  elevation: 2,
+                  color: Colors.white,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
                         height: 40,
@@ -39,8 +44,7 @@ class _TakeQuizDemoState extends State<TakeQuizDemo> {
                       SizedBox(
                         height: 20,
                       ),
-                      Text(
-                          'The first person to cross the atlantic was Sir Robert fitcher?')
+                      Text('Jeff Bezos is the owner of Amazon?')
                     ],
                   ),
                 ),
@@ -53,7 +57,7 @@ class _TakeQuizDemoState extends State<TakeQuizDemo> {
                 height: 50,
                 width: MediaQuery.of(context).size.width - 150,
                 decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Color.fromRGBO(32, 175, 199, 1),
                     borderRadius: BorderRadius.circular(
                         (MediaQuery.of(context).size.width - 200) / 2)),
                 child: Center(
@@ -79,7 +83,7 @@ class _TakeQuizDemoState extends State<TakeQuizDemo> {
                   Icons.arrow_back,
                   color: Colors.white,
                 ),
-                onTap: (){
+                onTap: () {
                   Navigator.pop(context);
                 },
               ),
@@ -89,13 +93,14 @@ class _TakeQuizDemoState extends State<TakeQuizDemo> {
             Positioned(
               child: GestureDetector(
                 child: Text(
-                  'Animals and wild-life',
+                  text,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-                onTap: (){
+                onTap: () {
                   Navigator.pop(context);
                 },
               ),
@@ -107,20 +112,20 @@ class _TakeQuizDemoState extends State<TakeQuizDemo> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Text(
-                    '3',
+                    questionNumber.toString(),
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
-                    ),
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(width: 5,),
+                  SizedBox(
+                    width: 5,
+                  ),
                   Text(
                     'of',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 13,
-
                     ),
                   ),
                   Text(
@@ -128,7 +133,6 @@ class _TakeQuizDemoState extends State<TakeQuizDemo> {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 13,
-
                     ),
                   ),
                 ],
@@ -140,10 +144,100 @@ class _TakeQuizDemoState extends State<TakeQuizDemo> {
               child: Container(
                 width: MediaQuery.of(context).size.width - 50,
                 height: 5,
-                color: Colors.blue,
+                color: Colors.grey,
               ),
               top: 180,
               left: 22,
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height - 240,
+              left: 50,
+              child: Container(
+                height: 70,
+                width: MediaQuery.of(context).size.width - 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey, width: 1.0),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if(questionNumber!=10){
+                            questionNumber++;
+                          }
+                        });
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 130,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(
+                              Icons.close,
+                              color: Colors.red,
+                              size: 25,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              'NO',
+                              style: TextStyle(
+                                color: Color.fromRGBO(32, 175, 199, 1),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 50,
+                      width: 1,
+                      color: Colors.grey,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if(questionNumber!=10){
+                            questionNumber++;
+                          }
+                        });
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 130,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(
+                              Icons.check,
+                              color: Colors.green,
+                              size: 25,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              'YES',
+                              style: TextStyle(
+                                color: Color.fromRGBO(32, 175, 199, 1),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

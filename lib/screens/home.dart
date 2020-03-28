@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tourdequiz/components/check.dart';
+import 'package:tourdequiz/components/topscore.dart';
+import 'package:tourdequiz/screens/takequiz.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -7,7 +9,32 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  int _numTopScores = 3;
   var selectedCard = '';
+  final PageController _pageController = PageController(initialPage: 0);
+  int _currentPage = 0;
+
+  List<Widget> _buildPageIndicator() {
+    List<Widget> list = [];
+    for (int i = 0; i < _numTopScores; i++) {
+      list.add(i == _currentPage ? _scoreIndicator(true) : _scoreIndicator(false));
+    }
+    return list;
+  }
+
+  Widget _scoreIndicator(bool isActive) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      margin: EdgeInsets.symmetric(horizontal: 5.0),
+      height: 8.0,
+      width: isActive ? 30.0 : 16.0,
+      decoration: BoxDecoration(
+        color: isActive ? Color.fromRGBO(32, 175, 199, 1) : Color.fromRGBO(72, 72, 72, 1),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,66 +42,30 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: <Widget>[
           Positioned(
+            top: MediaQuery.of(context).size.height/2 - 20,
+            left: MediaQuery.of(context).size.width/2 - 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _buildPageIndicator(),
+            ),
+          ),
+          Positioned(
             top: 80,
             left: 24,
             child: Container(
               height: 280,
-              width: MediaQuery.of(context).size.width - 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Color.fromRGBO(32, 175, 199, 1),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              width: double.infinity,
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (int page) {
+                  setState(() {
+                    _currentPage = page;
+                  });
+                },
                 children: <Widget>[
-                  Text(
-                    'LAST WEEK TOP SCORE',
-                    style: TextStyle(fontSize: 14, color: Colors.white),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        '4000',
-                        style: TextStyle(fontSize: 40, color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Icon(
-                        Icons.wb_incandescent,
-                        color: Colors.orangeAccent,
-                        size: 45,
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'By',
-                        style: TextStyle(fontSize: 12, color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        height: 20,
-                        width: 20,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        'Chiebuka Edwin',
-                        style: TextStyle(fontSize: 12, color: Colors.white),
-                      )
-                    ],
-                  )
+                  TopScore(name: 'Chiebuka Edwin', score: '4000', date: 'LAST WEEK',),
+                  TopScore(name: 'Chiebuka Edwin', score: '2900', date: 'UPPER WEEK',),
+                  TopScore(name: 'Chiebuka Edwin', score: '2300', date: 'FIRST QUIZ',),
                 ],
               ),
             ),
@@ -260,7 +251,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       onTap: () {
                         selectedCard != ''
-                            ? Navigator.pushNamed(context, '/takequiz')
+                            ? Navigator.push(context, MaterialPageRoute(
+                          builder: (BuildContext context) => TakeQuizDemo()
+                        ))
                             : null;
                       },
                     ),
